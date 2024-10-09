@@ -83,17 +83,18 @@ export class SigninComponent
                 localStorage.setItem('currentUser', JSON.stringify(res.user));
                 this.authService.currentUserSubject.next(res.user);
                 const role = this.authService.currentUserValue.role;
-                if (res.user.role === Role.Superadmin || res.user.role === Role.State) {
+                if (res.user.role === Role.Admin || res.user.role === Role.User) {
                   this.router.navigate(['/mnf/dashboard']);
-                } else if (role == Role.Manufacture) {
-                  this.router.navigate(['/mnf/dashboard']);
-                } else if (role === Role.Wholesaler) {
-                  this.router.navigate(['/wholesaler/dashboard']);
-                } else if (role === Role.Retailer) {
-                  this.router.navigate(['/retailer/dashboard']);
-                } else {
-                  this.router.navigate(['/authentication/signin']);
-                }
+                } 
+                // else if (role == Role.Manufacture) {
+                //   this.router.navigate(['/mnf/dashboard']);
+                // } else if (role === Role.Wholesaler) {
+                //   this.router.navigate(['/wholesaler/dashboard']);
+                // } else if (role === Role.Retailer) {
+                //   this.router.navigate(['/retailer/dashboard']);
+                // } else {
+                //   this.router.navigate(['/authentication/signin']);
+                // }
                 this.communicationService.customSuccess(`Login Successfully...!!!`);
                 this.loading = false;
               }, 500);
