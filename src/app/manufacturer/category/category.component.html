@@ -1,0 +1,198 @@
+<section class="content">
+    <div class="content-block">
+        <h4 class="mt-4"><i class="bi bi-person-vcard-fill h3"></i> Vendor Discounts/ Schemes</h4>
+        <div class="card p-3">        
+
+            <mat-tab-group  (selectedIndexChange)="onTabChange($event)">
+                <mat-tab label="For Wholesaler's">
+                    <h5 class="mt-4">Wholesaler's</h5>
+                    <hr class="mt-0">
+                    <form [formGroup]="categoryForm1" (ngSubmit)="onSubmit('wholesaler')">
+                        <div class="row">
+                            <div class="w-50">
+                                <label for="category">Scheme Name <span class="required">*</span></label>
+                                <input type="text" id="category" formControlName="category" class="form-control"
+                                    placeholder="Enter Scheme Name" />
+                                <div *ngIf="categoryForm1.get('category')?.touched && categoryForm1.get('category')?.invalid"
+                                    class="text-danger">
+                                    Scheme Name is required.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
+                                <label for="productDiscount">Product Discount<span class="required">*</span><small>(in %)</small> </label>
+                                <input type="text" id="productDiscount" formControlName="productDiscount"
+                                    placeholder="Enter Product Discount in ( % )" class="form-control" />
+                                <div *ngIf="categoryForm1.get('productDiscount')?.touched && categoryForm1.get('productDiscount')?.invalid"
+                                    class="text-danger">
+                                    Product Discount is required.
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
+                                <label for="shippingDiscount">Shipping Discount<span class="required">*</span><small>(in %)</small> </label>
+                                <input type="text" id="shippingDiscount" formControlName="shippingDiscount"
+                                    placeholder="Enter Shipping Discount in ( % )" class="form-control" />
+                                <div *ngIf="categoryForm1.get('shippingDiscount')?.touched && categoryForm1.get('shippingDiscount')?.invalid"
+                                    class="text-danger">
+                                    Shipping Discount is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row w-50">
+                            <div class="form-group text-center mt-3">
+                                <button type="submit" class="btn submit-btn" [disabled]="categoryForm1.invalid">
+                                    {{ formType }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="card p-2">
+                        <h5 class="mt-2">Wholesaler's Scheme List:</h5>
+                        <hr class="mt-0">
+                        <div class="p-grid p-fluid">
+                            <div class="p-col-12 text-center">
+                                <p-table [value]="wholesalerCategory">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th>Scheme Name</th>
+                                            <th>Product Discount</th>
+                                            <th>Shipping Discount</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-wholesalerCategory>
+                                        <tr>
+                                            <td class="text-center py-0">{{ wholesalerCategory.category }}</td>
+                                            <td class="text-center py-0">{{ wholesalerCategory.productDiscount }}</td>
+                                            <td class="text-center py-0">{{ wholesalerCategory.shippingDiscount }}</td>
+
+                                            <td class="py-0">
+                                                <div class="button-container text-center">
+                                                    <button class="btn btn-icon p-2" pTooltip="Edit"
+                                                        (click)="editForm(wholesalerCategory,'wholesaler')" tooltipPosition="top">
+                                                        <i class="bi bi-pencil-fill"></i>
+                                                    </button>
+                                                    <button class="btn btn-icon p-2" [disabled]="deleteBtnDisabled"
+                                                        (click)="deleteWholesalerCategory(wholesalerCategory)"
+                                                        pTooltip="Delete" tooltipPosition="top">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                                @if(wholesalerCategory && wholesalerCategory.length > 0){
+                                <p-paginator (onPageChange)="onPageChangeWholesaler($event)" [first]="firstWholesaler"
+                                    [rows]="rows" [totalRecords]="totalResultsWholesaler"
+                                    [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+                                }@else {
+                                <p class="text-center">No Wholesaler's Scheme found.</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="For Retailer's">
+                    <h5 class="mt-4">Retailer's</h5>
+                    <hr class="mt-0">
+                    <form [formGroup]="categoryForm2" (ngSubmit)="onSubmit('retailer')">
+                        <div class="row">
+                            <div class="w-50">
+                                <label for="category">Scheme Name<span class="required">*</span></label>
+                                <input type="text" id="category" formControlName="category" class="form-control"
+                                    placeholder="Enter Scheme Name" />
+                                <div *ngIf="categoryForm2.get('category')?.touched && categoryForm2.get('category')?.invalid"
+                                    class="text-danger">
+                                    Scheme Name is required.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
+                                <label for="productDiscount">Product Discount<span class="required">*</span><small>(in %)</small> </label>
+                                <input type="text" id="productDiscount" formControlName="productDiscount"
+                                    placeholder="Enter Product Discount in ( % )" class="form-control" />
+                                <div *ngIf="categoryForm2.get('productDiscount')?.touched && categoryForm2.get('productDiscount')?.invalid"
+                                    class="text-danger">
+                                    Product Discount is required.
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
+                                <label for="shippingDiscount">Shipping Discount<span class="required">*</span><small>(in %)</small> </label>
+                                <input type="text" id="shippingDiscount" formControlName="shippingDiscount"
+                                    placeholder="Enter Shipping Discount in ( % )" class="form-control" />
+                                <div *ngIf="categoryForm2.get('shippingDiscount')?.touched && categoryForm2.get('shippingDiscount')?.invalid"
+                                    class="text-danger">
+                                    Shipping Discount is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row w-50">
+                            <div class="form-group text-center mt-3">
+                                <button type="submit" class="btn submit-btn" [disabled]="categoryForm2.invalid">
+                                    {{ formType }}
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </form>
+
+                    <div class="card p-2">
+                        <h5 class="mt-2">Retailer's Scheme List:</h5>
+                        <hr class="mt-0">
+                        <div class="p-grid p-fluid">
+                            <div class="p-col-12 text-center">
+                                <p-table [value]="retailerCategory">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th>Scheme Name</th>
+                                            <th>Product Discount</th>
+                                            <th>Shipping Discount</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-retailerCategory>
+                                        <tr>
+                                            <td class="text-center py-0">{{ retailerCategory.category }}</td>
+                                            <td class="text-center py-0">{{ retailerCategory.productDiscount }}</td>
+                                            <td class="text-center py-0">{{ retailerCategory.shippingDiscount }}</td>
+
+                                            <td class="py-0">
+                                                <div class="button-container text-center">
+                                                    <button class="btn btn-icon p-2" pTooltip="Edit"
+                                                        (click)="editForm(retailerCategory,'retailer')" tooltipPosition="top">
+                                                        <i class="bi bi-pencil-fill"></i>
+                                                    </button>
+                                                    <button class="btn btn-icon p-2" [disabled]="deleteBtnDisabled"
+                                                        (click)="deleteRetailerCategory(retailerCategory)"
+                                                        pTooltip="Delete" tooltipPosition="top">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                                @if(retailerCategory && retailerCategory.length > 0){
+                                <p-paginator (onPageChange)="onPageChangeRetailer($event)" [first]="firstRetailer"
+                                    [rows]="rows" [totalRecords]="totalResultsRetailer"
+                                    [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+                                }@else {
+                                <p>No Retailer's Scheme found.</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>           
+        </div>
+
+    </div>
+</section>

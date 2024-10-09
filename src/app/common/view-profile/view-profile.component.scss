@@ -1,0 +1,77 @@
+.registration-form {
+    .label-input {
+        margin-top: 15px;
+
+        span {
+            color: red;
+        }
+    }
+}
+
+.submit-btn {
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+    // margin: 2rem !important;
+    background-color: #f0ad4e;
+    color: #fff;
+}
+
+
+// for disbled feilds
+input:disabled {
+  background-color: #f0f0f0; /* Light gray background */
+  color: #666; /* Gray text color */
+  border-color: #ddd; /* Light gray border color */
+}
+
+// add discount
+/* Styling for Discount Section */
+.discount-section {
+    max-width: 100; /* Adjust the width as needed */
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .discount-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .discount-label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .discount-dropdown {
+    width: 30%;
+    padding-left: 5px;
+    height: 34 px;
+    border-radius: 4px;
+    // border: 1px solid #ced4da;
+    box-shadow: none;
+    font-size: 14px;
+  }
+  .discount-dropdown:disabled{
+    background-color: #F0F0F0;
+  }
+  
+  .discount-button {
+    padding: 6px 12px;
+    font-size: 14px;
+    margin-left: 10px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .discount-button:hover {
+    background-color: #0056b3; /* Adjust hover color */
+    color: #ffffff;
+  }
+  
+  
+  

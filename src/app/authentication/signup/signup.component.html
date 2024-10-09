@@ -1,0 +1,205 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="default" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: rgb(242, 94, 94)"> Loading... </p>
+</ngx-spinner>
+<div class="auth-container" style="height: 100vh!important;">
+    <div class="row auth-main">
+        <div class="col-sm-6 px-0 d-none d-sm-block">
+            <div class="left-img" style="background-image: url(assets/images/auth-image/register_img.jpg);"></div>
+        </div>
+        <div class="col-sm-6 auth-form-section">
+            <button class="btn float-end" (click)="gotoHome()"><b>Home</b></button><br><br>
+            <!-- <p class="auth-signup-text text-muted mb-0 w-100 text-center"> Registration</p> -->
+            <div class="text-center">
+                <img src="assets/images/auth-image/fth-logo.png" height="170px" width="260px" alt="Main_logo of FTH">
+            </div>
+            <h6 class=" my-4 text-center">Register Yourself With Fashion Traders Hub</h6>
+            <div class="auth-wrapper"></div>
+            <div class="registration-form px-4">
+                <form [formGroup]="mgfRegistrationForm" (ngSubmit)="onSubmit()">
+                    @if(!showPasswordForm) {
+                    <div class="row d-flex justify-content-center">
+                        <div *ngIf="!otpStep" class="row d-flex justify-content-center">
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                                <label class="lable-input" for="fullName">Contact Person Name<span>*</span>:</label>
+                                <input type="text" id="fullName" formControlName="fullName"
+                                    placeholder="Enter Contact Person Name" class="form-control" />
+                                <div *ngIf="mgfRegistrationForm.get('fullName')?.touched && mgfRegistrationForm.get('fullName')?.invalid"
+                                    class="text-danger">
+                                    Contact Person Name is required.
+                                </div>
+                            </div>
+
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                                <label class="lable-input" for="companyName">Company/Firm Name :</label>
+                                <input type="text" id="companyName" formControlName="companyName"
+                                    placeholder="Enter Company/Firm Name " class="form-control" />
+                            </div>
+
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                                <label class="lable-input" for="role">Organization Identity<span>*</span>:</label>
+                                <!-- <input type="text" id="role" formControlName="role" class="form-control" /> -->
+                                <select formControlName="role" class="form-select"
+                                    placeholder="Select Organization Identity">
+                                    <option value="" disabled>Select Identity</option>
+                                    <option *ngFor="let item of allIdentity" [value]="item.name">{{item.name|titlecase}}</option>                                   
+                                </select>
+                                <div *ngIf="mgfRegistrationForm.get('role')?.touched && mgfRegistrationForm.get('role')?.invalid"
+                                    class="text-danger">
+                                    Organization Identity is required.
+                                </div>
+                            </div>
+
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                                <label class="lable-input" for="mobileNumber">Mobile Number<span>*</span>:</label>
+                                <div class="d-flex mat-select">
+                                    <mat-form-field appearance="outline" class="w-25 me-2">
+                                        <mat-select formControlName="code">
+                                            <mat-option *ngFor="let country of countryCode" [value]="country.code">
+                                                <img [src]="country.flag" alt="{{ country.countryName }}"
+                                                    class="country-flag" /> {{ country.code }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <input type="number" id="mobileNumber" placeholder="Enter Mobile No"
+                                        formControlName="mobileNumber" class="form-control w-75" />
+                                </div>
+                                <div *ngIf="mgfRegistrationForm.get('mobileNumber')?.touched && mgfRegistrationForm.get('mobileNumber')?.invalid"
+                                    class="text-danger">
+                                    <div *ngIf="mgfRegistrationForm.get('mobileNumber')?.errors?.['required']">Mobile
+                                        number is required.</div>
+                                    <div *ngIf="mgfRegistrationForm.get('mobileNumber')?.errors?.['pattern']">Mobile
+                                        number must be 10 digits.</div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                                <label class="lable-input" for="email">Email Address<span>*</span>:</label>
+                                <input type="text" id="email" formControlName="email"
+                                    placeholder="Enter your email address" class="form-control" />
+                                <div *ngIf="mgfRegistrationForm.get('email')?.touched && mgfRegistrationForm.get('email')?.invalid"
+                                    class="text-danger">
+                                    <div *ngIf="mgfRegistrationForm.get('email')?.errors?.['required']">Email is
+                                        required.</div>
+                                    <div *ngIf="mgfRegistrationForm.get('email')?.errors?.['email']">Invalid
+                                        email format.</div>
+                                </div>
+                            </div>
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 text-danger mt-2">
+                                <small>* Please provide a valid mobile number & email - this is required for validation
+                                    purpose.</small>
+                            </div>
+                        </div>
+
+                        <!-- <div *ngIf="otpStep" class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                            <label class="lable-input">Enter OTP<span>*</span>:</label>
+                            <div class="otp-input mt-4">
+                                <input type="text" id="otp1" maxlength="1" (input)="onOtpChange(0, $event)"
+                                    class="form-control otp-box" />
+                                <input type="text" id="otp2" maxlength="1" (input)="onOtpChange(1, $event)"
+                                    class="form-control otp-box" />
+                                <input type="text" id="otp3" maxlength="1" (input)="onOtpChange(2, $event)"
+                                    class="form-control otp-box" />
+                                <input type="text" id="otp4" maxlength="1" (input)="onOtpChange(3, $event)"
+                                    class="form-control otp-box" />
+                                <input type="text" id="otp5" maxlength="1" (input)="onOtpChange(4, $event)"
+                                    class="form-control otp-box" />
+                                <input type="text" id="otp6" maxlength="1" (input)="onOtpChange(5, $event)"
+                                    class="form-control otp-box" />
+                            </div>
+                            <div *ngIf="mgfRegistrationForm.get('otp')?.touched && mgfRegistrationForm.get('otp')?.invalid"
+                                class="text-danger">
+                                OTP is required.
+                            </div>
+                        </div> -->
+
+                        <div *ngIf="otpStep" class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                            <!-- Email OTP -->
+                            <label class="lable-input"><b>Enter Email OTP</b><span>*</span> :</label>
+                            <div class="otp-input mt-4">
+                              <input type="text" id="otp1" maxlength="1" (input)="onOtpChange(0, $event)" class="form-control otp-box" />
+                              <input type="text" id="otp2" maxlength="1" (input)="onOtpChange(1, $event)" class="form-control otp-box" />
+                              <input type="text" id="otp3" maxlength="1" (input)="onOtpChange(2, $event)" class="form-control otp-box" />
+                              <input type="text" id="otp4" maxlength="1" (input)="onOtpChange(3, $event)" class="form-control otp-box" />
+                              <input type="text" id="otp5" maxlength="1" (input)="onOtpChange(4, $event)" class="form-control otp-box" />
+                              <input type="text" id="otp6" maxlength="1" (input)="onOtpChange(5, $event)" class="form-control otp-box" />
+                            </div>
+                          
+                            <!-- Mobile OTP -->
+                            <label class="lable-input"><b>Enter Mobile OTP</b><span>*</span> :</label>
+                            <div class="otp-input mt-4">
+                              <input type="text" id="mobileOtp1" maxlength="1" (input)="onMobileOtpChange(0, $event)" class="form-control otp-box" />
+                              <input type="text" id="mobileOtp2" maxlength="1" (input)="onMobileOtpChange(1, $event)" class="form-control otp-box" />
+                              <input type="text" id="mobileOtp3" maxlength="1" (input)="onMobileOtpChange(2, $event)" class="form-control otp-box" />
+                              <input type="text" id="mobileOtp4" maxlength="1" (input)="onMobileOtpChange(3, $event)" class="form-control otp-box" />
+                              <input type="text" id="mobileOtp5" maxlength="1" (input)="onMobileOtpChange(4, $event)" class="form-control otp-box" />
+                              <input type="text" id="mobileOtp6" maxlength="1" (input)="onMobileOtpChange(5, $event)" class="form-control otp-box" />
+                            </div>
+                          </div>
+                          
+
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn submit-btn" [disabled]="mgfRegistrationForm.invalid">{{
+                                otpStep ? 'Submit Otp' : 'Submit' }}</button>
+                        </div>
+                    </div>
+                    }
+                </form>
+
+                <form [formGroup]="setPasswordFrom" (ngSubmit)="passwordSubmit()">
+                    @if(showPasswordForm){
+                    <h4 class="text-muted text-center">Set Your Password</h4>
+                    <div class="row justify-content-center">
+                        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 mb-2">
+                            <label for="pass" class="form-label">Password<span class="required">*</span></label>
+                            <div class="d-flex form-control py-0" style="height: 36px;">
+                                <input [type]="hide ? 'password' : 'text'" class="form-control shadow-none border-0 p-0"
+                                    formControlName="password">
+                                <mat-icon class="material-icons-outlined pwd-toggle form-control border-0 ps-1 pb-3"
+                                    matSuffix (click)="hide = !hide">
+                                    {{ hide ? 'visibility_off' : 'visibility' }}
+                                </mat-icon>
+                            </div>
+                            <div *ngIf="setPasswordFrom.get('password')?.touched && setPasswordFrom.get('password')?.invalid"
+                                class="text-danger">
+                                <div *ngIf="setPasswordFrom.get('password')?.errors?.['required']">Password is required.
+                                </div>
+                                <div *ngIf="setPasswordFrom.get('password')?.errors?.['minlength']">Password must be at
+                                    least 8 characters long.</div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 mb-2">
+                            <label for="confirmPass" class="form-label">Confirm Password<span
+                                    class="required">*</span></label>
+                            <div class="d-flex form-control py-0" style="height: 36px;">
+                                <input [type]="c_hide ? 'password' : 'text'"
+                                    class="form-control shadow-none border-0 p-0" formControlName="confirmPassword">
+                                <mat-icon class="material-icons-outlined pwd-toggle form-control border-0 ps-1 pb-3"
+                                    matSuffix (click)="c_hide = !c_hide">
+                                    {{ c_hide ? 'visibility_off' : 'visibility' }}
+                                </mat-icon>
+                            </div>
+                            <div *ngIf="setPasswordFrom.get('confirmPassword')?.touched && setPasswordFrom.get('confirmPassword')?.invalid"
+                                class="text-danger">
+                                <div *ngIf="setPasswordFrom.get('confirmPassword')?.errors?.['required']">Confirm
+                                    Password is required.</div>
+                                <div *ngIf="setPasswordFrom.get('confirmPassword')?.errors?.['mustMatch']">Passwords
+                                    must match.</div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
+                            <!-- @if(!(submitted && setPasswordFrom.get('password')?.errors)){ -->
+                            <p class="mb-0" style="color:#864f20;">
+                                Create a Strong password (ex.Abcd$123)
+                            </p>
+                            <!-- } -->
+                            <button class="btn submit-btn" type="submit">Set Password</button>
+                        </div>
+                    </div>
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

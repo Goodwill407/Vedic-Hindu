@@ -1,0 +1,286 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.mat-elevation-z8 table tr:nth-child(even) {
+
+  background: #f2f2f2;
+}
+
+.btn-primary-type {
+  background: var(--dark-red);
+}
+
+.btn-primary-type:disabled {
+  border-radius: 40px;
+  background: var(--gray-03);
+  color: #495057;
+  border: 0;
+}
+
+.btn-primary-type:disabled:hover {
+  background: var(--gray-03);
+  box-shadow: none;
+  color: var(--black-01);
+}
+
+.btn-primary-type:hover,
+.btn-primary-type:active,
+:not(.btn-check)+.btn:active,
+.btn-primary-type:first-child:active {
+  background: var(--dark-red);
+  box-shadow: 2px 6px 4px 0 rgba(0, 0, 0, 0.12);
+  color: var(--white);
+}
+
+.required {
+  color: red;
+  margin-left: 1px;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  margin: 0;
+  padding: 2px 5px;
+  border: 0 none;
+  color: #4b5563;
+  background: transparent;
+  transition: box-shadow 0.2s;
+  border-radius: 0;
+}
+
+.p-dropdown {
+  display: inline-flex;
+  cursor: pointer;
+  position: relative;
+  -webkit-user-select: none;
+  user-select: none;
+  width: 100%;
+  height: 43px;
+}
+
+.p-dropdown-item {
+  cursor: pointer;
+  font-weight: normal;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.p-inputtext {
+  font-size: 14px;
+}
+
+.p-dropdown input {
+  height: 40px;
+}
+
+.p-dropdown-panel .p-dropdown-header {
+  padding: 5px 20px 5px 5px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+  background: #f9fafb;
+  margin: 0;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+.filter-card {
+  background: #fff;
+  min-height: 50px;
+  position: relative;
+  margin-bottom: 24px;
+  border: 1px solid #f2f4f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
+  -webkit-box-shadow: 0 0 10px 0 rgba(183, 192, 206, 0.2);
+  display: flex;
+  padding: 8px;
+
+  h5 {
+    align-items: baseline;
+  }
+}
+
+.data-not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  padding: 12px;
+  margin-top: 16px;
+  border-radius: 50px;
+  letter-spacing: 0.55px;
+  text-align: center;
+  color: var(--white);
+  background-color: var(--red-01);
+}
+
+// comman SearchBox
+.table-header {
+  display: flex;
+  align-items: center;
+  /* Vertically center the items */
+  justify-content: space-between;
+  /* Space items between the left and right */
+}
+
+.search-container {
+  position: relative;
+  /* Allows absolute positioning of the icon */
+  width: 250px;
+  /* Set the width of the search box */
+}
+
+.search-box {
+  width: 100%;
+  /* Full width of the container */
+  padding: 8px 36px 8px 12px;
+  /* Space for the icon inside the input */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #999;
+}
+
+.country-flag {
+  width: 20px !important;
+  height: 15px !important;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.my-custom-form-styles {
+
+  .mat-form-field {
+    height: 35px;
+  }
+
+  .mat-select-trigger {
+    height: 34px !important;
+    display: flex;
+    align-items: center;
+    border-color: #ddd;
+    color: inherit;
+    // width: 80px !important;
+  }
+
+  .mat-select-value {
+    height: 34px;
+    line-height: 34px;
+    display: flex;
+    align-items: center;
+    color: inherit;
+    // width: 80px !important;
+
+  }
+
+  .mat-mdc-select-value {
+    font-size: 14px;
+    color: inherit !important;
+  }
+
+  .mat-select {
+    height: 34px !important;
+
+    input {
+      height: inherit !important;
+    }
+  }
+
+  .mdc-text-field--outlined .mat-mdc-form-field-infix,
+  .mdc-text-field--no-label .mat-mdc-form-field-infix {
+    padding-top: 6px !important;
+    padding-bottom: 0 !important;
+  }
+
+  .mat-mdc-form-field-infix {
+    flex: auto;
+    min-width: 0;
+    width: 118px !important;
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  .mat-mdc-form-field-infix {
+    min-height: var(--mat-form-field-container-height);
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .mat-mdc-text-field-wrapper {
+    height: 34px !important;
+    flex: auto;
+  }
+
+  .form-control,
+  .form-select {
+    border-color: #9e9e9e !important;
+  }
+
+  .mat-select:disabled,
+  .mat-input-element:disabled,
+  .mat-select-disabled,
+  .mat-mdc-text-field-wrapper:disabled,
+  .mat-mdc-select-value:disabled {
+    background-color: #f0f0f0 !important;
+    color: #666 !important;
+    border-color: #9e9e9e !important;
+  }
+
+  .mat-form-field-disabled {
+    background-color: #f0f0f0 !important;
+    color: #666 !important;
+    border-color: #9e9e9e !important;
+    width: 118px !important;
+  }
+
+  input:disabled,
+  select:disabled {
+    background-color: #f0f0f0 !important;
+    color: #666;
+    border-color: #ddd !important;
+    border-radius: 3px;
+  }
+
+  .mat-mdc-option {
+    padding: 0;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+
+  .mat-mdc-option .mat-pseudo-checkbox-minimal {
+    margin-left: -7px !important;
+    flex-shrink: 0;
+  }
+
+  .mat-pseudo-checkbox {
+    width: 11px !important;
+    height: 12px;
+  }
+}
+
+/* For Number field not take Text*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  height: 34px;
+}
+
+.custom-swal-width {
+  max-width: 350px;
+  min-width: 250px;
+}

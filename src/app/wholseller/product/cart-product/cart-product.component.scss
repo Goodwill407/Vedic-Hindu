@@ -1,0 +1,121 @@
+.content {
+  .content-block {
+    h4 {
+      display: flex;
+      align-items: center;
+    }
+
+    .card {
+      padding: 20px;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+  }
+}
+
+::ng-deep .p-datatable {
+  font-size: 12px;
+  // height: 60vh;
+  /* Set your desired font size */
+}
+
+::ng-deep .p-datatable-header,
+.p-datatable-thead>tr>th,
+.p-datatable-tbody>tr>td {
+  text-align: center;
+  /* Center align text in table headers and cells */
+}
+
+::ng-deep .p-accordion .p-accordion-content {
+  padding: 1.25rem 0.5rem;
+  border: 1px solid #e5e7eb;
+}
+
+input,
+.totals {
+  font-size: 12px;
+  padding: 5px;
+  font-family: inherit;
+}
+
+input {
+  font-size: 12px !important;
+  border: none !important;
+  width: 100px;
+  color: inherit !important;
+}
+
+.delete {
+  background-color: #fff;
+  color: #df4e44bd;
+  padding: 5px 9px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #df4e44bd;
+    color: #fff;
+  }
+}
+
+// for ads
+/* Right-side ads styling */
+
+.card{
+  min-height:70vh
+}
+
+.ads-flex {
+  display: flex;  
+  flex-wrap: nowrap;
+}
+
+.ads-right {
+  margin: 20px;
+  margin-top:67px ;
+  margin-right: 0;
+  flex-shrink: 0;
+  width: 175px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between ads */
+ 
+}
+
+
+/* Bottom ads styling */
+.ads-bottom {
+  height: 130px;
+  width: 100%;   
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .ads-flex {
+    flex-direction: column;
+  }
+
+  .ads-right {
+    margin-left: 0;
+    margin-top: 20px;
+    width: 100%;
+    flex-direction: row;
+    gap: 10px; /* Space between ads for row layout */
+  }
+  .ads-bottom {
+    position: static;
+    height: auto;
+  }
+}

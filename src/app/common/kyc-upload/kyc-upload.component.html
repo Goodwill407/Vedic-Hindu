@@ -1,0 +1,77 @@
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h4 class="mb-0"><i class="bi bi-person-vcard-fill h3"></i> Upload Documents</h4>
+</div>
+<form [formGroup]="kycForm" (ngSubmit)="onSubmit()">
+    <div class="card p-4 pt-2">
+        <button type="button" class="btn navigate" (click)="navigateFun()">
+            <i class="bi bi-arrow-left-circle h4"></i>
+        </button>
+        <div class="m-0 p-0 d-flex align-items-center">           
+            <h5 class="text-center mb-0 flex-grow-1"> KYC Details</h5>
+        </div>
+        <hr class="my-2">
+        <div class="row">
+            <div class="col-6">
+                <label class="label-input mt-4">Select Document Type:</label>
+                <select formControlName="fileName" class="form-select">
+                    <option value="">Select Document</option>
+                    <option value="GSTIN">GSTIN</option>
+                    <option value="ShopLicence">Shop & Establishment Licence</option>
+                    <option value="PanCard">PAN Card</option>
+                </select>
+                <div *ngIf="submitted && kycForm.controls['fileName'].errors" class="text-danger">
+                    <small *ngIf="kycForm.controls['fileName'].errors?.['required']">Document type is required.</small>
+                </div>
+
+                <label class="label-input mt-4" for="file">Upload Document:</label>
+                <input type="file" class="form-control" id="file" (change)="onFileSelect($event)" #fileInput />
+                <div *ngIf="selectedFileName" class="mt-1">
+                    <small>Selected File: {{ selectedFileName }}</small>
+                </div>
+                <div *ngIf="submitted && kycForm.controls['file'].errors" class="text-danger">
+                    <small *ngIf="kycForm.controls['file'].errors?.['required']">File upload is required.</small>
+                    <small *ngIf="kycForm.controls['file'].errors?.['invalidFormat']">Invalid file format. Only PNG, JPEG, and JPG are allowed.</small>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div *ngIf="imagePreviewUrl" class="mt-2">
+                    <img [src]="imagePreviewUrl" alt="Image Preview" class="img-thumbnail" style="max-width: 300px;" />
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-2">
+        <div class="m-0 p-0 d-flex align-items-center">
+            <h5 class="text-center mb-0 flex-grow-1">Company Logo</h5>
+        </div>
+        <hr class="my-2">
+        <div class="row">
+            <div class="col-6">
+                <label class="label-input mt-4">Upload Company Logo:</label>
+                <input type="file" class="form-control" id="profileImg" (change)="onProfileImgSelect($event)" #profileImgInput />
+                <div *ngIf="selectedProfileImgName" class="mt-2">
+                    <small>Selected Company Logo: {{ selectedProfileImgName }}</small>
+                </div>
+                <div *ngIf="submitted && kycForm.controls['profileImg'].errors" class="text-danger">
+                    <small *ngIf="kycForm.controls['profileImg'].errors?.['required']">Company Logo is required.</small>
+                    <small *ngIf="kycForm.controls['profileImg'].errors?.['invalidFormat']">Invalid file format. Only PNG, JPEG, and JPG are allowed.</small>
+                    <small *ngIf="kycForm.controls['profileImg'].errors?.['maxSizeExceeded']">Image size should not exceed 2MB.</small>
+                </div>
+                
+            </div>
+
+            <div class="col-6">
+                <div *ngIf="profileImgPreviewUrl" class="mt-2">
+                    <img [src]="profileImgPreviewUrl" alt="Profile Image Preview" class="img-thumbnail" style="max-width: 190px;" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-6 text-center">
+                <button type="submit" class="btn submit-btn me-3">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>

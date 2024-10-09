@@ -1,0 +1,22 @@
+/* Override styles for mat-dialog */
+::ng-deep .mat-dialog-container {
+  padding: 0; /* Remove default padding */
+}
+
+::ng-deep .mat-dialog-content {
+  margin: 0; /* Remove margin if needed */
+}
+
+::ng-deep .mat-dialog-actions {
+  margin-top: 0; /* Remove any top margin */
+}
+
+/* Adjust the image properties */
+::ng-deep .mat-dialog-content img {
+  max-width: 100%; /* Make sure the image is responsive */
+  height: auto; /* Maintain aspect ratio */
+  margin: 0; /* Remove any unwanted margins */
+}
+::ng-deep .mat-mdc-dialog-content {
+  max-height: 83vh;
+}

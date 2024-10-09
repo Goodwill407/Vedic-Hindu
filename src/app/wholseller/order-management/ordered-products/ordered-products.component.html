@@ -1,0 +1,57 @@
+<section class="content">
+  <div class="content-block">
+    <h4 class="mt-4"><i class="bi bi-person-vcard-fill h3"></i>&nbsp; Ordered Products</h4>
+    @if(inwardStock && inwardStock.length > 0){
+    <p-accordion [activeIndex]="0" class="card mt-4">
+      <ng-container *ngFor="let distributor of inwardStock; let distIndex = index">
+        <p-accordionTab class="px-0" [header]="'Manufacturer : ' + distributor['manufacturer']">
+          <p-table [value]="distributor['products']">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Sr. No.</th>
+                <th>Design No.</th>
+                <th>Design Title</th>
+                <th>Size Set</th>
+                <th>Quantity</th>
+                <th>MRP <br>(1 Set)</th>
+                <th>Manufacture<br> Price  (1 Set)</th>
+                <th>Wholesaler<br> Price (1 Set)</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product let-index="rowIndex">
+              <tr>
+                <td>{{ index + 1 }}</td>
+                <td>{{ product.designNumber }}</td>
+                <td>{{ product.productTitle }}</td>
+                <td>
+                  <span *ngFor="let size of product.sizes; let last = last">
+                    {{ size.standardSize }}<span *ngIf="!last">,</span>
+                  </span>
+                </td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.setOfMRP }}</td>
+                <td>{{ product.setOfManPrice }}</td>
+                <td style="width: 90px !important;">
+                  <input type="number" [(ngModel)]="product.setOfWholesalerPrice" class="form-control" />
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+          <hr class="my-2">
+          <div class="text-center">
+            <button class="btn btn-success" 
+                    (click)="addPrice(distributor.products, distributor.orderDetails)" 
+                    [disabled]="!isWholesalerPriceFilled(distributor.products)">
+              <i class="bi bi-plus"></i>&nbsp;Add Product
+            </button>
+          </div>
+        </p-accordionTab>
+      </ng-container>
+    </p-accordion>
+  }@else {
+    <div class="card mt-5 p-5">
+      <h4 class="text-center">No Product found.</h4>
+    </div>
+  }
+  </div>
+</section>
