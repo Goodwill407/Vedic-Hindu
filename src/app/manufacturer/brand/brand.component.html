@@ -3,13 +3,13 @@
 </ngx-spinner>
 <section class="content">
     <div class="content-block">
-        <h4 class="mt-4"><i class="bi bi-person-vcard-fill h3"></i> Brands</h4>
+        <h4 class="mt-4"><i class="bi bi-person-vcard-fill h3"></i> Deity Category</h4>
         <div class="card p-3">
-            <h5 class="">Add Brands</h5>
+            <h5 class="">Add Deity Category</h5>
             <hr class="mt-0">
             <form [formGroup]="brandForm" (ngSubmit)="onSubmit()">
                 <div class="w-75">
-                    <label for="brandName">Brand Name:</label>
+                    <label for="brandName">Category Name:</label>
                     <input type="text" id="brandName" formControlName="brandName" class="form-control" />
                     <div *ngIf="brandForm.get('brandName')?.touched && brandForm.get('brandName')?.invalid"
                         class="text-danger">
@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="mt-2 w-75">
-                    <label for="brandDescription">Brand Description:</label>
+                    <label for="brandDescription">Category Description:</label>
                     <textarea id="brandDescription" formControlName="brandDescription" class="form-control"></textarea>
                     <div *ngIf="brandForm.get('brandDescription')?.touched && brandForm.get('brandDescription')?.invalid"
                         class="text-danger">
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="mt-2 w-50">
-                    <label for="brandLogo">Brand Logo:</label>
+                    <label for="brandLogo">Category Logo:</label>
                     <input type="file" id="brandLogo" (change)="onImageChange($event)" class="form-control" title=""
                         #fileInput />
                     <div *ngIf="imageFormatError" class="text-danger">{{ imageFormatError }}</div>
@@ -50,16 +50,16 @@
 
         <!-- table -->
         <div class="card p-3">
-            <h5 class="mt-2">Brand List:</h5>
+            <h5 class="mt-2">Deity Category List:</h5>
             <hr>
             <div class="p-grid p-fluid ">
                 <div class="p-col-12 text-center">
                     <p-table [value]="distributors">
                         <ng-template pTemplate="header">
                             <tr>
-                                <th>Brand Name</th>
-                                <th>Brand Description</th>
-                                <th>Brand Logo</th>
+                                <th>Category Name</th>
+                                <th>Category Description</th>
+                                <th>Category Logo</th>
                                 <th>Action</th>
                             </tr>
                         </ng-template>
